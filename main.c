@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #define PI 3.141592
+#define JHSB 585
 //struct
 
 struct point
@@ -64,7 +65,7 @@ int getPoint(double a, int n)
 int main() /**/
 {
 	int i = 0;
-	int n = 10;
+	int n = JHSB;
 	//open file to read point
 	FILE *fo;
 	fo = fopen("point.txt", "r");
@@ -74,8 +75,8 @@ int main() /**/
 		return -1;
 	};
 
-	POINT *pp = (POINT *)malloc((10) * sizeof(POINT));
-	for (i = 0; i < 10; i++)
+	POINT *pp = (POINT *)malloc((JHSB) * sizeof(POINT));
+	for (i = 0; i < JHSB; i++)
 	{
 		fscanf(fo, "%lf", &(*(pp + i)).x);
 		fscanf(fo, "%lf", &(*(pp + i)).y);
@@ -95,11 +96,11 @@ int main() /**/
 		c.y = 0;
 		for (t = 0; t <= 1; t += 0.001) //delta
 		{
-			c = add(c, crmult(cmult(*(pp + getPoint(t, 10)), cis(-2 * i * t * PI)), 0.001));
+			c = add(c, crmult(cmult(*(pp + getPoint(t, JHSB)), cis(-2 * i * t * PI)), 0.001));
 		}
 		(*(Cn_p + i)).x = c.x;
 		(*(Cn_p + i)).y = c.y;
-		printf("{\"x\":%.6f,\"y\":%.6f},\n", (*(Cn_p + i)).x, (*(Cn_p + i)).y);
+		printf("{\"x\": %.6f, \"y\": %.6f},\n", (*(Cn_p + i)).x, (*(Cn_p + i)).y);
 	}
 	puts("\nCn is ready!\n");
 	FILE *fw;
@@ -110,11 +111,11 @@ int main() /**/
 		return -1;
 	};
 	fputc('[', fw);
-	fprintf(fw, "{\"x\":%.6f,\"y\":%.6f},\n", (*(Cn_p)).x, (*(Cn_p)).y); //C0
+	fprintf(fw, "{\"x\": %.6f, \"y\": %.6f},\n", (*(Cn_p)).x, (*(Cn_p)).y); //C0
 	for (i = 1; i <= n; i++)
 	{
-		fprintf(fw, "{\"x\":%.6f,\"y\":%.6f},\n", (*(Cn_p + i)).x, (*(Cn_p + i)).y); // C1,C-1
-		fprintf(fw, "{\"x\":%.6f,\"y\":%.6f}", (*(Cn_p - i)).x, (*(Cn_p - i)).y);
+		fprintf(fw, "{\"x\": %.6f, \"y\": %.6f},\n", (*(Cn_p + i)).x, (*(Cn_p + i)).y); // C1,C-1
+		fprintf(fw, "{\"x\": %.6f, \"y\": %.6f}", (*(Cn_p - i)).x, (*(Cn_p - i)).y);
 		if (i != n) fprintf(fw, ",\n");
 	}
 	fputc(']', fw);
