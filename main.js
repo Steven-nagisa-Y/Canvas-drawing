@@ -5,7 +5,6 @@ let lineContext;
 
 let circleNumber = 30;
 let deltat = 0.001;
-let points = [];
 let cn = [];
 
 let startTime;
@@ -49,7 +48,7 @@ window.onload = () => {
 
         if (e.buttons == 1) {
             let point = { x: e.offsetX, y: e.offsetY };
-            points = [point];
+            cn = [point];
             inputContext.closePath();
             inputContext.clearRect(0, 0, inputCanvas.width, inputCanvas.height);
             inputContext.beginPath();
@@ -62,14 +61,14 @@ window.onload = () => {
     lineCanvas.onmousemove = e => {
         if (e.buttons == 1) {
             let point = { x: e.offsetX, y: e.offsetY };
-            points.push(point);
+            cn.push(point);
             inputContext.lineTo(point.x, point.y);
             inputContext.stroke();
         }
     }
 
     drawButton.onclick = () => {
-        if (points.length <= 0)
+        if (cn.length <= 0)
             return;
 
         cn = [];
@@ -96,13 +95,13 @@ window.onload = () => {
 
     let xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");
-    xobj.open('GET', 'drawpoints.json', true);
-    xobj.onreadystatechange = function () {
+    xobj.open('GET', 'drawcn.json', true);
+    xobj.onreadystatechange = function() {
         if (xobj.readyState == 4 && xobj.status == "200") {
-            points = JSON.parse(xobj.responseText);
+            cn = JSON.parse(xobj.responseText);
             inputContext.moveTo(0, 0);
             inputContext.beginPath();
-            points.forEach(p => {
+            cn.forEach(p => {
                 inputContext.lineTo(p.x, p.y);
             });
             inputContext.stroke();
@@ -149,8 +148,7 @@ let updateCircles = () => {
         drawContext.beginPath();
         drawContext.moveTo(p.x, p.y);
         startedDrawing = true;
-    }
-    else {
+    } else {
         drawContext.lineTo(p.x, p.y);
         drawContext.stroke();
         drawContext.moveTo(p.x, p.y);
@@ -187,11 +185,11 @@ let abs = (a) => {
     return Math.sqrt((a.x * a.x) + (a.y * a.y));
 }
 let getPoint = (a) => {
-    let a1 = (points.length - 1) * a;
+    let a1 = (cn.length - 1) * a;
     let amin = Math.floor(a1);
     let amax = Math.ceil(a1);
 
     if (amin == amax)
-        return points[amin];
-    return cadd(crmult(points[amin], (amax - a1)), crmult(points[amax], (a1 - amin)));
+        return cn[amin];
+    return cadd(crmult(cn[amin], (amax - a1)), crmult(cn[amax], (a1 - amin)));
 }
