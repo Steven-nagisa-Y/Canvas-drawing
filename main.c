@@ -2,7 +2,7 @@
 #include <math.h>
 #include <string.h>
 #include <stdlib.h>
-#define PI 3.141592
+#define PI 3.1415926
 //struct
 
 struct point
