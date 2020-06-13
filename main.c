@@ -3,7 +3,6 @@
 #include <string.h>
 #include <stdlib.h>
 #define PI 3.141592
-#define JHSB 450
 //struct
 
 struct point
@@ -64,6 +63,10 @@ int getPoint(double a, int n)
 
 int main() /**/
 {
+	int JHSB;
+	printf("Number of points:");
+	scanf("%d", &JHSB);
+	printf("\n");
 	int i = 0;
 	int n = JHSB;
 	//open file to read point
