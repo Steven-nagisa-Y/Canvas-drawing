@@ -95,7 +95,7 @@ window.onload = () => {
 
     let xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");
-    xobj.open('GET', 'drawcn.json', true);
+    xobj.open('GET', 'Cn.json', true);
     xobj.onreadystatechange = function() {
         if (xobj.readyState == 4 && xobj.status == "200") {
             cn = JSON.parse(xobj.responseText);
