@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #define PI 3.141592
 //struct
+
 struct point
 {
 	double x;
