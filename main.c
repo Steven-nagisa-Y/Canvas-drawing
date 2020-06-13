@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #define PI 3.141592
-#define JHSB 585
+#define JHSB 450
 //struct
 
 struct point
