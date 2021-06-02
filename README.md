@@ -1,6 +1,6 @@
 # 通过HTML/JS画图
 
-> Github链接：[Github](https://github.com/Steven-nagisa-Y/HELP-JH-FOR.git)
+> Github链接：[Github](https://github.com/Steven-nagisa-Y/Canvas-drawing)
 
 
 
