@@ -80,7 +80,7 @@
 
 在老版本的浏览器中可以直接运行：`index.html`查看图像；
 
-新版浏览器请保证已进行第一、第二步骤，在控制台看到：**Server running at http://localhost:4040**，之后，访问http://localhost:4040即可查看绘图。
+新版浏览器请保证已进行第一、第二步骤，在控制台看到：`Server running at http://localhost:4040`，之后，访问 http://localhost:4040 即可查看绘图。
 
 
 
